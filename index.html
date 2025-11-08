@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilal Nawaz - Data Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #3b82f6;
+            --accent: #06b6d4;
+            --dark: #0f0f23;
+            --dark-secondary: #1a1a2e;
+            --light: #ffffff;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Card */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Skill Bar */
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+        
+        .badge:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Button */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Project Card */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Text Animation */
+        .text-animation {
+            display: inline-block;
+        }
+        
+        .text-animation span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textReveal 0.8s ease forwards;
+        }
+        
+        @keyframes textReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Floating Animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--dark-secondary);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 80px 30px 30px;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(139, 92, 246, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Particle Background */
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+    
+    <!-- Particle Background -->
+    <canvas id="particles-bg"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass z-50 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">BN</span>
+                </div>
+                <span class="text-xl font-bold">Bilal Nawaz</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-white">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
+                <a href="#experience" class="nav-link text-gray-300 hover:text-white">Experience</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                <a href="#education" class="nav-link text-gray-300 hover:text-white">Education</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+            </div>
+            
+            <button class="md:hidden" id="mobileMenuBtn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times text-xl"></i>
+        </div>
+        <div class="flex flex-col space-y-6">
+            <a href="#home" class="text-xl font-medium hover:text-purple-400">Home</a>
+            <a href="#about" class="text-xl font-medium hover:text-purple-400">About</a>
+            <a href="#skills" class="text-xl font-medium hover:text-purple-400">Skills</a>
+            <a href="#experience" class="text-xl font-medium hover:text-purple-400">Experience</a>
+            <a href="#projects" class="text-xl font-medium hover:text-purple-400">Projects</a>
+            <a href="#education" class="text-xl font-medium hover:text-purple-400">Education</a>
+            <a href="#contact" class="text-xl font-medium hover:text-purple-400">Contact</a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="text-animation">
+                        <h1 class="text-5xl md:text-7xl font-bold">
+                            <span style="animation-delay: 0.1s">Data</span>
+                            <span style="animation-delay: 0.2s">Driven</span>
+                            <span style="animation-delay: 0.3s">Solutions</span>
+                        </h1>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl text-gray-400">Bilal Nawaz</h2>
+                    <p class="text-lg text-gray-300 max-w-lg">
+                        Junior Data Analyst with expertise in SQL, Python, and Machine Learning. 
+                        Passionate about transforming complex data into actionable insights.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            Get In Touch
+                        </a>
+                        <a href="#projects" class="btn btn-outline">
+                            <i class="fas fa-briefcase"></i>
+                            View Projects
+                        </a>
+                    </div>
+                    <div class="flex space-x-6 pt-4">
+                        <a href="https://linkedin.com/in/bilal-nawaz" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/bilalnawazdev" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="mailto:bilalnawazdev@gmail.com" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="floating">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl blur-xl opacity-50"></div>
+                            <img src="https://picsum.photos/seed/bilalmodern/500/500.jpg" 
+                                 alt="Bilal Nawaz" 
+                                 class="relative w-full rounded-2xl border-2 border-purple-500/30">
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 glass px-6 py-3 rounded-lg">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-sm">Open to Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">About Me</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Data Analysis</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Proficient in extracting insights from complex datasets using SQL and Python. 
+                            Experienced in data cleaning, transformation, and exploratory analysis.
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-brain text-blue-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Machine Learning</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Knowledge of ML algorithms including BERT, Random Forest, and CNN-RNN. 
+                            Building predictive models for various business applications.
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-database text-cyan-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Data Engineering</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Experience with ETL workflows, data pipelines, and database management. 
+                            Familiar with Airflow and cloud technologies.
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-pie text-green-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Visualization</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Skilled in creating interactive dashboards and reports using Tableau, Power BI, and Excel. 
+                            Translating data into compelling visual stories.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Technical Skills</span>
+            </h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold mb-4">Core Technologies</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Python (Pandas, NumPy, Scikit-learn)</span>
+                                    <span class="text-gray-400">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="75"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">SQL</span>
+                                    <span class="text-gray-400">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="70"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Machine Learning & NLP</span>
+                                    <span class="text-gray-400">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="65"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold mb-4">Tools & Platforms</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Tableau & Power BI</span>
+                                    <span class="text-gray-400">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="80"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">ETL & Data Pipelines</span>
+                                    <span class="text-gray-400">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="70"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Cloud (GCP) & DevOps</span>
+                                    <span class="text-gray-400">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="60"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technology Tags -->
+                <div class="mt-12">
+                    <h3 class="text-xl font-semibold mb-6 text-center">Technology Stack</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">Pandas</span>
+                        <span class="badge">NumPy</span>
+                        <span class="badge">Scikit-learn</span>
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">BERT</span>
+                        <span class="badge">Tableau</span>
+                        <span class="badge">Power BI</span>
+                        <span class="badge">Excel</span>
+                        <span class="badge">Git</span>
+                        <span class="badge">Docker</span>
+                        <span class="badge">Airflow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Experience</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="space-y-12">
+                        <div class="relative">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-8 rounded-xl ml-0 md:ml-auto md:mr-0 md:w-5/12 reveal">
+                                <div class="flex flex-col md:text-right">
+                                    <h3 class="text-xl font-semibold text-gray-100">Data Analyst Team Lead</h3>
+                                    <p class="text-purple-400 font-medium">ScanSync - Loyalist College</p>
+                                    <p class="text-gray-500 mt-2">Jan 2025 – April 2025</p>
+                                    <p class="text-sm text-gray-600">Toronto, Canada</p>
+                                </div>
+                                <ul class="space-y-2 text-gray-400 mt-4">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Spearheaded development of NLP-powered analytics platform</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Optimized Python + SQL pipelines (25% efficiency gain)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Delivered dashboards for hiring trends analysis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-8 rounded-xl mr-0 md:mr-auto md:ml-0 md:w-5/12 reveal">
+                                <div class="flex flex-col">
+                                    <h3 class="text-xl font-semibold text-gray-100">Data Analyst</h3>
+                                    <p class="text-purple-400 font-medium">DBHamsted</p>
+                                    <p class="text-gray-500 mt-2">Aug 2022 – Aug 2023</p>
+                                    <p class="text-sm text-gray-600">India</p>
+                                </div>
+                                <ul class="space-y-2 text-gray-400 mt-4">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Automated ETL workflows (40% effort reduction)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Built Power BI dashboards for finance teams</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Influenced executive strategy through analysis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-8 rounded-xl ml-0 md:ml-auto md:mr-0 md:w-5/12 reveal">
+                                <div class="flex flex-col md:text-right">
+                                    <h3 class="text-xl font-semibold text-gray-100">Business Analytics Intern</h3>
+                                    <p class="text-purple-400 font-medium">Sparks Foundation</p>
+                                    <p class="text-gray-500 mt-2">July 2021 – Aug 2021</p>
+                                    <p class="text-sm text-gray-600">India</p>
+                                </div>
+                                <ul class="space-y-2 text-gray-400 mt-4">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Built models achieving 85% accuracy</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Automated reporting dashboards (40% time saved)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                        <span>Identified critical KPIs for stakeholders</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Featured Projects</span>
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Olist E-commerce Project -->
+                <div class="project-card card rounded-xl overflow-hidden reveal">
+                    <img src="https://picsum.photos/seed/olistecommerce/600/350.jpg" alt="Olist E-commerce Analytics" class="w-full h-64 object-cover">
+                    <div class="project-overlay">
+                        <h3 class="text-3xl font-bold text-white mb-4">Olist E-commerce Analytics</h3>
+                        <p class="text-white/90 mb-6 text-center max-w-md">
+                            Comprehensive analysis of Brazilian e-commerce platform data to uncover customer behavior patterns, 
+                            optimize delivery times, and identify growth opportunities
+                        </p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-white hover:text-yellow-300 transition-colors">
+                                <i class="fas fa-external-link-alt text-2xl"></i>
+                            </a>
+                            <a href="https://github.com/bilalnawazdev" target="_blank" class="text-white hover:text-yellow-300 transition-colors">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-4">Olist E-commerce Analytics</h3>
+                        <p class="text-gray-400 mb-6">
+                            End-to-end data analysis project using Olist Brazilian e-commerce dataset. 
+                            Applied advanced analytics techniques to understand customer behavior, optimize operations, 
+                            and drive business insights.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-3">Key Achievements:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-line text-purple-400 mt-1 mr-2"></i>
+                                    <span>Identified top-performing product categories with 35% higher profit margins</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-map-marked-alt text-purple-400 mt-1 mr-2"></i>
+                                    <span>Optimized delivery routes reducing average delivery time by 22%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-users text-purple-400 mt-1 mr-2"></i>
+                                    <span>Segmented customers into 5 distinct behavioral groups</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-3">Technical Implementation:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-database text-purple-400 mt-1 mr-2"></i>
+                                    <span>Processed 100k+ records with advanced data cleaning techniques</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-bar text-purple-400 mt-1 mr-2"></i>
+                                    <span>Created interactive dashboards for real-time business monitoring</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-brain text-purple-400 mt-1 mr-2"></i>
+                                    <span>Applied clustering algorithms for customer segmentation</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Python</span>
+                            <span class="badge">Pandas</span>
+                            <span class="badge">SQL</span>
+                            <span class="badge">Tableau</span>
+                            <span class="badge">Machine Learning</span>
+                            <span class="badge">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stock Volatility Project -->
+                <div class="project-card card rounded-xl overflow-hidden reveal">
+                    <img src="https://picsum.photos/seed/stockvolatility/600/350.jpg" alt="Stock Price Volatility Analysis" class="w-full h-64 object-cover">
+                    <div class="project-overlay">
+                        <h3 class="text-3xl font-bold text-white mb-4">Stock Price Volatility & Correlation Analysis</h3>
+                        <p class="text-white/90 mb-6 text-center max-w-md">
+                            Comprehensive financial analysis project examining stock price volatility patterns and 
+                            correlation matrices across different sectors for portfolio optimization
+                        </p>
+                        <div class="flex space-x-6">
+                            <a href="https://github.com/bilalnawazdev/Stock-Price-Volatility-and-Correlation-Analysis" target="_blank" class="text-white hover:text-yellow-300 transition-colors">
+                                <i class="fas fa-external-link-alt text-2xl"></i>
+                            </a>
+                            <a href="https://github.com/bilalnawazdev/Stock-Price-Volatility-and-Correlation-Analysis" target="_blank" class="text-white hover:text-yellow-300 transition-colors">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-4">Stock Price Volatility & Correlation Analysis</h3>
+                        <p class="text-gray-400 mb-6">
+                            Financial analysis project examining stock price volatility patterns and correlation matrices. 
+                            Applied statistical methods to understand market behavior and support investment decisions.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-3">Key Findings:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-line text-purple-400 mt-1 mr-2"></i>
+                                    <span>Identified volatility patterns across different market sectors</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-project-diagram text-purple-400 mt-1 mr-2"></i>
+                                    <span>Created correlation matrices for portfolio diversification insights</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-calculator text-purple-400 mt-1 mr-2"></i>
+                                    <span>Calculated key risk metrics including VaR and Sharpe ratios</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-3">Technical Implementation:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-area text-purple-400 mt-1 mr-2"></i>
+                                    <span>Analyzed historical stock data with moving averages and Bollinger Bands</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-network-wired text-purple-400 mt-1 mr-2"></i>
+                                    <span>Built correlation heatmaps for sector relationship visualization</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-table text-purple-400 mt-1 mr-2"></i>
+                                    <span>Generated comprehensive volatility reports and risk assessments</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Python</span>
+                            <span class="badge">Pandas</span>
+                            <span class="badge">NumPy</span>
+                            <span class="badge">Matplotlib</span>
+                            <span class="badge">Seaborn</span>
+                            <span class="badge">Financial Analysis</span>
+                            <span class="badge">Statistical Methods</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Education</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card p-8 rounded-xl mb-6 reveal">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Ontario Post-Graduate Certificate</h3>
+                            <p class="text-gray-400">Computer Software and Database Development</p>
+                            <p class="text-purple-400 font-medium">Loyalist College</p>
+                        </div>
+                        <div class="text-right mt-4 md:mt-0">
+                            <p class="text-gray-400">Sep 2023 – May 2025</p>
+                            <span class="badge">Canada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card p-8 rounded-xl reveal">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Bachelor of Technology</h3>
+                            <p class="text-gray-400">Information Technology</p>
+                            <p class="text-purple-400 font-medium">Dr. A.P.J Abdul Kalam Technical University</p>
+                        </div>
+                        <div class="text-right mt-4 md:mt-0">
+                            <p class="text-gray-400">Sep 2018 – Aug 2022</p>
+                            <span class="badge">India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Get In Touch</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Let's Connect</h3>
+                        <p class="text-gray-400 mb-8">
+                            I'm always interested in hearing about new opportunities and exciting projects. 
+                            Feel free to reach out if you'd like to collaborate or just have a chat!
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 glass rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p>bilalnawazdev@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 glass rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-phone text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Phone</p>
+                                    <p>+1 (548) 881-3372</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 glass rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Location</p>
+                                    <p>Toronto, Ontario, Canada</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4 mt-8">
+                            <a href="https://linkedin.com/in/bilal-nawaz" target="_blank" 
+                               class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/bilalnawazdev" target="_blank" 
+                               class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form id="contactForm" class="space-y-4">
+                            <input type="text" placeholder="Your Name" required
+                                   class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white">
+                            <input type="email" placeholder="Your Email" required
+                                   class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white">
+                            <textarea placeholder="Your Message" rows="4" required
+                                      class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 text-white"></textarea>
+                            <button type="submit" class="btn btn-primary w-full justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-white/10">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Bilal Nawaz. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Particle Background
+        const canvas = document.getElementById('particles-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 100;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = `hsl(${Math.random() * 60 + 250}, 70%, 50%)`;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Draw connections
+            particles.forEach((a, index) => {
+                particles.slice(index + 1).forEach(b => {
+                    const distance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+        
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+        
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Active navigation link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Text Animation
+        const textElements = document.querySelectorAll('.text-animation span');
+        textElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.1}s`;
+        });
+        
+        // Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        reveals.forEach(element => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    onEnter: () => element.classList.add('active')
+                }
+            });
+        });
+        
+        // Skill Bars Animation
+        const skillBars = document.querySelectorAll('.skill-fill');
+        
+        const animateSkills = () => {
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        };
+        
+        ScrollTrigger.create({
+            trigger: '#skills',
+            start: 'top 80%',
+            onEnter: animateSkills
+        });
+        
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Create success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-20 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Message sent successfully!';
+            document.body.appendChild(successDiv);
+            
+            // Reset form
+            e.target.reset();
+            
+            // Remove success message after 3 seconds
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
+        });
+        
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
